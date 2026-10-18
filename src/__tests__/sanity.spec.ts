@@ -1,0 +1,12 @@
+import { describe, expect, it } from 'vitest'
+import { mount } from '@vue/test-utils'
+import App from '@/App.vue'
+
+// Sanity check: proves Vitest + jsdom + @vue/test-utils + the `@` alias all work
+// together. Real tests for the optimizer/geo/budget logic arrive with T-20/T-21.
+describe('Taiwanna scaffold', () => {
+  it('mounts the app shell', () => {
+    const wrapper = mount(App)
+    expect(wrapper.text()).toContain('Taiwanna')
+  })
+})
