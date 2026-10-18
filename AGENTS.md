@@ -56,6 +56,13 @@ Before calling work done, run in order: `lint:check` → `typecheck` → `test` 
   `erasableSyntaxOnly` (no enums, namespaces, or parameter properties).
 - Icons come from the `primeicons` **CSS** package (`import 'primeicons/primeicons.css'`),
   not `@primeicons/vue` (which ties to PrimeVue v5).
+- **Pinia v4 only applies plugins after `app.use(pinia)`** — registering a plugin on a
+  bare `createPinia()` does nothing until the pinia instance is installed into an app,
+  so tests must `createApp({}).use(pinia)`. Persisted writes flush on the next tick.
+- `pinia-plugin-persistedstate` uses **`auto: false`**; each store opts in with
+  `persist: true` (or options). Keys are `taiwanna.v1:<store-id>` and the version is
+  never migrated — bumping it orphans old keys by design (`src/stores/persistence.ts`).
+  `persistenceError` (a ref) reports quota/storage failures for the UI to toast.
 
 ## Conventions
 
@@ -70,9 +77,10 @@ Before calling work done, run in order: `lint:check` → `typecheck` → `test` 
 ## Status
 
 - **Tickets live in `TICKETS.md`** (build plan, deps, statuses) — read it before starting work.
-- T-1 done; next is T-2. Installed but not yet wired: PrimeVue, Pinia, Vue Router,
-  VueUse, Leaflet, vue-draggable-plus.
-- Deploy target: GitHub Pages.
+- T-1, T-2, T-3 done; next is T-4. Wired: PrimeVue, Pinia (+ persistedstate), VueUse.
+  Not yet wired: Vue Router, Leaflet, vue-draggable-plus.
+- CI runs the verify gate on PRs and `main` (`.github/workflows/ci.yml`).
+- Deploy target: GitHub Pages (CD not set up yet — T-18).
 
 ## Known noise (don't chase)
 
