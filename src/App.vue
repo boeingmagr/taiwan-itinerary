@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import ThemePreview from '@/components/ThemePreview.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <main class="app-shell">
     <header class="app-header">
       <h1>Taiwanna</h1>
-      <p>Trip planner for Taiwan — T-2 theme preview.</p>
+      <p>Trip planner for Taiwan.</p>
     </header>
 
-    <ThemePreview />
+    <RouterView />
   </main>
 </template>
 
