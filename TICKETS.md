@@ -21,7 +21,7 @@ Status legend: ✅ done · ⬜ todo · 🧊 backlog.
 | T-2  | PrimeVue + global setup (Tea Room design tokens) | E1 Found.  | high     | T-1           | ✅     |
 | T-3  | Pinia persistence setup                          | E1 Found.  | high     | T-1           | ✅     |
 | T-4  | Router shell                                     | E1 Found.  | high     | T-2           | ✅     |
-| T-5  | TypeScript interfaces (+ import validation)      | E2 Data    | high     | —             | ⬜     |
+| T-5  | TypeScript interfaces (+ import validation)      | E2 Data    | high     | —             | ✅     |
 | T-6  | Seed places data (CNY-proof, transit, localInfo) | E2 Data    | medium   | T-5           | ⬜     |
 | T-7  | Trips store (CRUD)                               | E2 Data    | high     | T-3, T-5      | ⬜     |
 | T-8  | Planner store (days/activities)                  | E2 Data    | high     | T-3, T-5      | ⬜     |
@@ -79,12 +79,15 @@ Routes: `/` TripListView · `/trips/:id` TripView · `/trips/:id/days/:dayId` Da
 
 ### E2 — Data Layer
 
-**T-5 — TypeScript interfaces**
-`src/types/index.ts`: `Trip`, `Day`, `Activity`, `Place`. `Place` includes
-`transit?` (mrt/tra/thsr/bus/youbike/notes) and `localInfo`; `Activity` includes
-`locked`. Pure typed helpers (e.g. `formatTWD`, `tripDateRange`). **Plus** JSON
-import schema validation (zod or hand-rolled guards), reject unknown versions,
-sanitize lengths, prototype-pollution guard (`__proto__`/`constructor` filtering).
+**T-5 — TypeScript interfaces** · ✅ done
+`src/types/index.ts`: `Trip`, `Day`, `Activity`, `Place` (+ `Transit`, `LocalInfo`,
+`HolidayInfo`, `TripExport`) and const unions (`ACTIVITY_TYPES`, `TRANSPORT_MODES`,
+`VIBES`, `HOLIDAY_STATUSES`). `Place` has `transit?`/`localInfo?`/`holidayInfo?`;
+`Activity` has `locked`. Pure helpers: `src/utils/format.ts` (`formatTWD`,
+`tripDateRange`), `src/utils/id.ts` (`createId`). Hand-rolled import validation in
+`src/utils/importExport.ts` (`parseTripExport`/`parsePlace`/`parseDay`/…): rejects
+unknown versions, clamps lengths, drops bad entries, strips `__proto__`/`constructor`/
+`prototype`. Covered by `format.spec.ts` + `importExport.spec.ts`.
 
 **T-6 — Seed places data** (CNY-proof)
 `src/data/seed-places.json`: ~20 curated spots, real lat/lng, **Taipei city + north
