@@ -18,7 +18,7 @@ Status legend: ✅ done · ⬜ todo · 🧊 backlog.
 | ID   | Title                                            | Epic       | Priority | Depends on    | Status |
 | ---- | ------------------------------------------------ | ---------- | -------- | ------------- | ------ |
 | T-1  | Scaffold project                                 | E1 Found.  | high     | —             | ✅     |
-| T-2  | PrimeVue + global setup (Tea Room design tokens) | E1 Found.  | high     | T-1           | ⬜     |
+| T-2  | PrimeVue + global setup (Tea Room design tokens) | E1 Found.  | high     | T-1           | ✅     |
 | T-3  | Pinia persistence setup                          | E1 Found.  | high     | T-1           | ⬜     |
 | T-4  | Router shell                                     | E1 Found.  | high     | T-2           | ⬜     |
 | T-5  | TypeScript interfaces (+ import validation)      | E2 Data    | high     | —             | ⬜     |
@@ -54,10 +54,13 @@ T-2–T-4 and T-6–T-8 batch well.
 Vite `vue-ts` template, deps installed, strict TS, exact-pinned deps, git init,
 Vitest + ESLint/Prettier wired, `lint/typecheck/test/build` green.
 
-**T-2 — PrimeVue + global setup**
+**T-2 — PrimeVue + global setup** · ✅ done
+**Locked:** Pine accent + Fraunces (headings; Inter body).
 Register PrimeVue 4 Aura via `definePreset` with Tea Room token overrides; Aura theme
-from `@primevue/themes`; `darkModeSelector: 'system'`; PrimeIcons CSS; global
-mobile-first CSS. Optional: `usePreferredDark()`, `useTitle()`.
+from `@primevue/themes`; PrimeIcons CSS; global mobile-first CSS. Class-based dark mode
+(`darkModeSelector: '.p-dark'`) driven by `useThemeMode()` (defaults to system, persisted
+override). Live switches in `ThemePreview.vue` for mode, accent (`useAccent()` /
+`updatePrimaryPalette`, 3 jade ramps) and font (`useFont()`, Inter / IBM Plex / Fraunces).
 Design tokens: jade accent, warm off-white light / deep-ink dark, system type stack
 with tabular numerals, per-category muted hues (food/sight/transport/hotel/shop)
 reused across timeline/icon/tag/map marker, 12px radius, 44px+ tap targets,

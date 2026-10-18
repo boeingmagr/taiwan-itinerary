@@ -1,11 +1,8 @@
 :root {
   color-scheme: light dark;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    'Noto Sans TC',
-    sans-serif;
+  --tw-font-sans: system-ui, -apple-system, 'Segoe UI', 'Noto Sans TC', sans-serif;
+  --tw-font-display: var(--tw-font-sans);
+  font-family: var(--tw-font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,8 +17,28 @@
 
 body {
   margin: 0;
+  font-family: var(--tw-font-sans);
+  background: var(--p-content-background);
+  color: var(--p-content-color);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--tw-font-display);
 }
 
 #app {
   min-height: 100svh;
+}
+
+.app-shell {
+  margin: 0 auto;
+  max-width: 42rem;
+  padding: 1.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom));
+}
+
+/* Tabular numerals for times, costs, and counts (Tea Room "numbers" principle). */
+.tw-num {
+  font-variant-numeric: tabular-nums;
 }

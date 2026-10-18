@@ -1,0 +1,21 @@
+/* App-level (non-PrimeVue) design tokens: activity-category colors, reused later
+   in the timeline rail, type icons, tags, and map markers. Declared once here. */
+:root {
+  --tw-radius: 12px;
+
+  --tw-category-sight: #2a9d7f;
+  --tw-category-food: #c2703d;
+  --tw-category-transport: #3f6fae;
+  --tw-category-hotel: #7a5bb0;
+  --tw-category-shop: #b0507a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tw-category-sight: #56c7a3;
+    --tw-category-food: #e0945f;
+    --tw-category-transport: #7aa8e0;
+    --tw-category-hotel: #a68ada;
+    --tw-category-shop: #d98aac;
+  }
+}
