@@ -74,13 +74,16 @@ Before calling work done, run in order: `lint:check` → `typecheck` → `test` 
 - Pure logic (route optimizer, haversine/geo, budget rollups) lives in framework-free
   modules with Vitest coverage — not inside components.
 - Pinia is the single source of truth; derived values are computed, never persisted.
+- Domain types live in `src/types/index.ts` (const arrays + union types, no enums).
+  Imported JSON is untrusted: validate/normalize via `src/utils/importExport.ts`
+  (never trust `localStorage`/files directly).
 - Prettier house style: no semicolons, single quotes, `printWidth: 90`, trailing
   commas. `public/` and `package-lock.json` are ignored (`.prettierignore`).
 
 ## Status
 
 - **Tickets live in `TICKETS.md`** (build plan, deps, statuses) — read it before starting work.
-- T-1…T-4 done; next is T-5. Wired: PrimeVue, Pinia (+ persistedstate), VueUse,
+- T-1…T-5 done; next is T-6. Wired: PrimeVue, Pinia (+ persistedstate), VueUse,
   Vue Router. Not yet wired: Leaflet, vue-draggable-plus.
 - CI runs the verify gate on PRs and `main` (`.github/workflows/ci.yml`).
 - Deploy target: GitHub Pages (CD not set up yet — T-18).
