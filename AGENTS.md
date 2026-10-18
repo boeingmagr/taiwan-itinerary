@@ -17,6 +17,9 @@ Run from the repo root (`~/Documents/taiwan-itinerary`):
 - Single test by name: `npx vitest run -t "mounts the app shell"`
 - Tests live in `src/__tests__/` as `*.{test,spec}.ts` (`src/**/*.{test,spec}.ts` — not `.tsx`);
   Vitest runs in `jsdom` with `restoreMocks: true`, configured in `vite.config.ts`.
+- `src/__tests__/setup.ts` stubs browser APIs jsdom lacks (`matchMedia`, `ResizeObserver`)
+  that PrimeVue components call on mount. Mounting a component that uses PrimeVue requires
+  installing the `PrimeVue` plugin in `global.plugins` (see `sanity.spec.ts`).
 
 Before calling work done, run in order: `lint:check` → `typecheck` → `test` → `build` →
 `format:check`. ESLint (`lint`) does **not** run Prettier — formatting is its own step.
