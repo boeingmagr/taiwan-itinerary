@@ -19,7 +19,7 @@ Status legend: ✅ done · ⬜ todo · 🧊 backlog.
 | ---- | ------------------------------------------------ | ---------- | -------- | ------------- | ------ |
 | T-1  | Scaffold project                                 | E1 Found.  | high     | —             | ✅     |
 | T-2  | PrimeVue + global setup (Tea Room design tokens) | E1 Found.  | high     | T-1           | ✅     |
-| T-3  | Pinia persistence setup                          | E1 Found.  | high     | T-1           | ⬜     |
+| T-3  | Pinia persistence setup                          | E1 Found.  | high     | T-1           | ✅     |
 | T-4  | Router shell                                     | E1 Found.  | high     | T-2           | ⬜     |
 | T-5  | TypeScript interfaces (+ import validation)      | E2 Data    | high     | —             | ⬜     |
 | T-6  | Seed places data (CNY-proof, transit, localInfo) | E2 Data    | medium   | T-5           | ⬜     |
@@ -66,10 +66,11 @@ with tabular numerals, per-category muted hues (food/sight/transport/hotel/shop)
 reused across timeline/icon/tag/map marker, 12px radius, 44px+ tap targets,
 `prefers-reduced-motion` respected.
 
-**T-3 — Pinia persistence setup**
-`pinia-plugin-persistedstate`; versioned key (e.g. `taiwanna.v1`); one key per store;
-derived state (budget, durations) never persisted; graceful quota-error handling
-(also T-8). `useStorage` only for lightweight prefs.
+**T-3 — Pinia persistence setup** · ✅ done
+`pinia-plugin-persistedstate` (`auto: false`) with a `taiwanna.v1:<store-id>` key per
+store; plugin installed in `src/stores/index.ts`, wired in `main.ts`. Guarded storage
+surfaces failures via a `persistenceError` ref (graceful quota handling). Derived state
+(getters) never persisted. Covered by `src/__tests__/persistence.spec.ts`.
 
 **T-4 — Router shell**
 Routes: `/` TripListView · `/trips/:id` TripView · `/trips/:id/days/:dayId` DayView ·
