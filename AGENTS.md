@@ -52,6 +52,9 @@ Before calling work done, run in order: `lint:check` → `typecheck` → `test` 
   and `tsconfig.app.json` (`paths`). Keep them in sync.
 - `vite.config.ts` sets `base: '/taiwan-itinerary/'` **only for production builds**
   (GitHub Pages subpath). Dev serves from `/`. Don't set it unconditionally.
+- Router uses HTML5 history with `createWebHistory(import.meta.env.BASE_URL)`. On GitHub
+  Pages, deep links need a `404.html` fallback (T-18). Views are lazy-loaded; `/theme`
+  is the Tea Room style-guide preview (`ThemePreview.vue`).
 - TS is strict via `@vue/tsconfig`, with `noUnusedLocals`/`noUnusedParameters` and
   `erasableSyntaxOnly` (no enums, namespaces, or parameter properties).
 - Icons come from the `primeicons` **CSS** package (`import 'primeicons/primeicons.css'`),
@@ -77,8 +80,8 @@ Before calling work done, run in order: `lint:check` → `typecheck` → `test` 
 ## Status
 
 - **Tickets live in `TICKETS.md`** (build plan, deps, statuses) — read it before starting work.
-- T-1, T-2, T-3 done; next is T-4. Wired: PrimeVue, Pinia (+ persistedstate), VueUse.
-  Not yet wired: Vue Router, Leaflet, vue-draggable-plus.
+- T-1…T-4 done; next is T-5. Wired: PrimeVue, Pinia (+ persistedstate), VueUse,
+  Vue Router. Not yet wired: Leaflet, vue-draggable-plus.
 - CI runs the verify gate on PRs and `main` (`.github/workflows/ci.yml`).
 - Deploy target: GitHub Pages (CD not set up yet — T-18).
 

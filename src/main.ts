@@ -5,10 +5,12 @@ import './theme/tokens.css'
 import './style.css'
 import { TeaRoomPreset } from './theme/preset'
 import { pinia } from './stores'
+import { router } from './router'
 import App from './App.vue'
 
 createApp(App)
   .use(pinia)
+  .use(router)
   .use(PrimeVue, {
     theme: {
       preset: TeaRoomPreset,
