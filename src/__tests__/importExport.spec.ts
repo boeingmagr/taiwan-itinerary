@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
   EXPORT_VERSION,
-  createTripExport,
   parseTripExport,
   stringifyTripExport,
 } from '@/utils/importExport'
@@ -135,6 +134,10 @@ describe('export round-trip', () => {
     const result = parseTripExport(json)
     expect(result.ok).toBe(true)
     if (!result.ok) return
-    expect(result.data).toMatchObject(createTripExport([trip], [day]))
+    expect(result.data.app).toBe('taiwanna')
+    expect(result.data.version).toBe(EXPORT_VERSION)
+    expect(result.data.trips).toEqual([trip])
+    expect(result.data.days).toEqual([day])
+    expect(Number.isNaN(Date.parse(result.data.exportedAt))).toBe(false)
   })
 })
